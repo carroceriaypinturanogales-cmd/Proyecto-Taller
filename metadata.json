@@ -1,0 +1,8 @@
+{
+  "name": "Carrocería y Pintura Nogales",
+  "description": "Taller líder de hojalatería, enderezado de chasis, pintura en cabina presurizada al horno y detallado cerámico Genesis en Nogales, Sonora.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
