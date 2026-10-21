@@ -1,7 +1,7 @@
 import { Wrench, Images, Calculator, MapPin, Phone, ChevronRight, ShieldCheck, Clock } from 'lucide-react';
 import { Language } from '../types';
 import { BUSINESS_INFO } from '../data/content';
-import heroWorkBg from '../assets/images/real/work-gmc.jpg';
+import wallpaperTitanium from '../assets/images/wallpaper-titanium.jpg';
 
 interface MainPortalHeroProps {
   lang: Language;
@@ -66,16 +66,16 @@ export default function MainPortalHero({ lang, onToggleLang }: MainPortalHeroPro
   return (
     <section className="relative overflow-hidden bg-[#12141c] text-white border-b border-white/5 pt-5 sm:pt-8 pb-12 sm:pb-16">
       
-      {/* Background Image of real work: GMC Sierra Mirror Finish */}
+      {/* Background Image: Luxury Dark Titanium Wallpaper matching user reference */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <img
-          src={heroWorkBg}
-          alt="Trabajo de Carrocería y Pintura Nogales"
-          className="w-full h-full object-cover object-center opacity-25 filter blur-[1px]"
+          src={wallpaperTitanium}
+          alt="Fondo Titanium Genesis"
+          className="w-full h-full object-cover object-center opacity-65 filter brightness-105"
           referrerPolicy="no-referrer"
         />
-        {/* Soft natural charcoal matte overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#12141c]/90 via-[#12141c]/95 to-[#12141c]" />
+        {/* Soft natural charcoal matte overlay for pristine text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#12141c]/65 via-[#12141c]/80 to-[#12141c]" />
       </div>
 
       <div className="relative z-10 max-w-2xl sm:max-w-4xl mx-auto px-4 sm:px-6 space-y-6 sm:space-y-8">
@@ -84,7 +84,7 @@ export default function MainPortalHero({ lang, onToggleLang }: MainPortalHeroPro
         <section className="p-6 sm:p-8 rounded-2xl bg-[#1a1d26] border border-white/5 shadow-md relative overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold w-fit">
-              <span>📍 {lang === 'es' ? 'Taller Oficial en Nogales, Sonora' : 'Official Shop in Nogales, Sonora'}</span>
+              <span>📍 {lang === 'es' ? 'Taller de Carrocería Genesis' : 'Genesis Auto Body Workshop'}</span>
             </div>
 
             {/* Status indicator & lang toggle */}

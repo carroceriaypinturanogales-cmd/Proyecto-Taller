@@ -1,98 +1,40 @@
-import { useEffect, useRef, useState } from 'react';
-import { MapPin, Phone, MessageCircle, Clock, ExternalLink, Navigation, AlertCircle } from 'lucide-react';
+// Source: Google Maps Platform Code Assist
+import { useState } from 'react';
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+  InfoWindow,
+} from '@vis.gl/react-google-maps';
+import {
+  MapPin,
+  Phone,
+  MessageCircle,
+  Clock,
+  ExternalLink,
+  Navigation,
+  AlertCircle,
+} from 'lucide-react';
 import { Language } from '../types';
 import { BUSINESS_INFO } from '../data/content';
-
-// Import Google Maps Extended Component Library web components
-import '@googlemaps/extended-component-library/api_loader.js';
-import '@googlemaps/extended-component-library/store_locator.js';
 
 interface LocationContactProps {
   lang: Language;
 }
 
-// Securely obtain API key from Vite environment variable with fallback
 const GOOGLE_MAPS_API_KEY =
   (import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined) ||
-  'AIzaSyCFAGXW5oQcyTCR8HYW8PfBEUop_1nqpf0';
+  'AIzaSyC3a0dCY7h91FIUJwUtKQDqAJBzYzoXOeo';
+
+const WORKSHOP_LOCATION = {
+  lat: 31.2988874,
+  lng: -110.9549794,
+};
 
 export default function LocationContact({ lang }: LocationContactProps) {
-  const locatorRef = useRef<HTMLElement | null>(null);
-  const [mapReady, setMapReady] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(true);
   const [mapError, setMapError] = useState(false);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    async function initLocator() {
-      try {
-        // Wait for custom element to be defined in browser
-        if (typeof window !== 'undefined' && 'customElements' in window) {
-          await customElements.whenDefined('gmpx-store-locator');
-
-          if (!isMounted) return;
-
-          const locator = locatorRef.current as (HTMLElement & {
-            configureFromQuickBuilder?: (config: unknown) => void;
-          }) | null;
-
-          if (locator && typeof locator.configureFromQuickBuilder === 'function') {
-            const configuration = {
-              locations: [
-                {
-                  title: 'Taller de Carrocería y Pintura Nogales',
-                  address1: 'José Zazueta 16',
-                  address2: 'Col. Los Encinos, 84064 Heroica Nogales, Son., México',
-                  coords: { lat: 31.2988874, lng: -110.9549794 },
-                  placeId: 'ChIJ7b8QWwBT0YYRpcZTL6tPJz8',
-                },
-              ],
-              mapOptions: {
-                center: { lat: 31.2988874, lng: -110.9549794 },
-                fullscreenControl: true,
-                mapTypeControl: true,
-                streetViewControl: true,
-                zoom: 16,
-                zoomControl: true,
-                maxZoom: 20,
-                mapId: '',
-              },
-              mapsApiKey: GOOGLE_MAPS_API_KEY,
-              capabilities: {
-                input: true,
-                autocomplete: true,
-                directions: true,
-                distanceMatrix: true,
-                details: true,
-                actions: true,
-              },
-            };
-
-            locator.configureFromQuickBuilder(configuration);
-            setMapReady(true);
-          }
-        }
-      } catch (err) {
-        console.warn('Could not configure gmpx-store-locator from QuickBuilder:', err);
-        if (isMounted) {
-          setMapError(true);
-        }
-      }
-    }
-
-    initLocator();
-
-    const timer = setTimeout(() => {
-      if (isMounted && !mapReady) {
-        // keep fallback available
-      }
-    }, 4000);
-
-    return () => {
-      isMounted = false;
-      clearTimeout(timer);
-    };
-  }, [mapReady]);
 
   return (
     <section id="ubicacion" className="py-16 sm:py-24 bg-[#12141c] border-b border-white/5 relative">
@@ -121,38 +63,63 @@ export default function LocationContact({ lang }: LocationContactProps) {
           <div className="lg:col-span-7 bg-[#1a1d26] border border-white/5 rounded-2xl p-3 sm:p-4 shadow-md">
             <div className="w-full h-[460px] sm:h-[520px] rounded-xl overflow-hidden bg-[#12141c] border border-white/5 relative">
               
-              {/* Official Google Maps Extended Component */}
-              <gmpx-api-loader
-                key={GOOGLE_MAPS_API_KEY}
-                solution-channel="GMP_QB_locatorplus_v11_cABD"
-              />
+              {!mapError ? (
+                <APIProvider
+                  apiKey={GOOGLE_MAPS_API_KEY}
+                  onError={() => setMapError(true)}
+                >
+                  <Map
+                    style={{ width: '100%', height: '100%' }}
+                    defaultCenter={WORKSHOP_LOCATION}
+                    defaultZoom={16}
+                    mapId="DEMO_MAP_ID"
+                    gestureHandling="greedy"
+                    disableDefaultUI={false}
+                    fullscreenControl={true}
+                    mapTypeControl={false}
+                    streetViewControl={true}
+                    internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
+                  >
+                    <AdvancedMarker
+                      position={WORKSHOP_LOCATION}
+                      title="Taller de Carrocería y Pintura Nogales"
+                      onClick={() => setInfoOpen(true)}
+                    >
+                      <Pin
+                        background="#f59e0b"
+                        borderColor="#78350f"
+                        glyphColor="#18181b"
+                      />
+                    </AdvancedMarker>
 
-              <gmpx-store-locator
-                ref={locatorRef}
-                map-id="DEMO_MAP_ID"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'block',
-                  '--gmpx-color-surface': '#ffffff',
-                  '--gmpx-color-on-surface': '#212121',
-                  '--gmpx-color-on-surface-variant': '#757575',
-                  '--gmpx-color-primary': '#d97706',
-                  '--gmpx-color-outline': '#e5e7eb',
-                  '--gmpx-fixed-panel-width-row-layout': '22em',
-                  '--gmpx-fixed-panel-height-column-layout': '55%',
-                  '--gmpx-font-family-base': 'system-ui, sans-serif',
-                  '--gmpx-font-family-headings': 'system-ui, sans-serif',
-                  '--gmpx-font-size-base': '0.875rem',
-                  '--gmpx-hours-color-open': '#16a34a',
-                  '--gmpx-hours-color-closed': '#dc2626',
-                  '--gmpx-rating-color': '#f59e0b',
-                  '--gmpx-rating-color-empty': '#d1d5db',
-                } as React.CSSProperties}
-              />
-
-              {/* Graceful Fallback if browser blocks script */}
-              {mapError && (
+                    {infoOpen && (
+                      <InfoWindow
+                        position={WORKSHOP_LOCATION}
+                        onCloseClick={() => setInfoOpen(false)}
+                      >
+                        <div className="p-1 text-neutral-900 max-w-[220px]">
+                          <div className="font-bold text-sm text-neutral-950 mb-1">
+                            Carrocería y Pintura Nogales
+                          </div>
+                          <div className="text-xs text-neutral-600 mb-2">
+                            José Zazueta #16, Col. Los Encinos
+                          </div>
+                          <a
+                            href={BUSINESS_INFO.googleMapsCoordinatesUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold rounded-lg text-xs transition-colors"
+                          >
+                            <Navigation className="w-3 h-3" />
+                            <span>{lang === 'es' ? 'Cómo llegar' : 'Directions'}</span>
+                          </a>
+                        </div>
+                      </InfoWindow>
+                    )}
+                  </Map>
+                </APIProvider>
+              ) : (
+                /* Fallback if map fails or network is blocked */
                 <div className="absolute inset-0 z-20 bg-[#12141c] flex flex-col items-center justify-center p-6 text-center">
                   <AlertCircle className="w-10 h-10 text-amber-500 mb-3" />
                   <p className="text-white font-medium text-sm mb-2">
