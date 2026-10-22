@@ -1,0 +1,60 @@
+2026-10-22T21:20:24.492170576Z ==> Downloading cache...
+2026-10-22T21:20:24.516948199Z ==> Cloning from https://github.com/carroceriaypinturanogales-cmd/Proyecto-Taller
+2026-10-22T21:20:25.332636421Z ==> Checking out commit 00c6b62ce9f5a23f2aea667e464320300b14a9f1 in branch main
+2026-10-22T21:20:26.790143556Z ==> Downloaded and extracted 72 MiB cache in 2s.
+2026-10-22T21:20:27.904322936Z ==> Installing dependencies with Bun...
+2026-10-22T21:20:27.958292548Z ==> Using Node.js version 24.22.1 (default)
+2026-10-22T21:20:27.9583035Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+2026-10-22T21:20:27.997861621Z ==> Using Bun version 1.4.3 (default)
+2026-10-22T21:20:27.997871955Z ==> Docs on specifying a Bun version: https://render.com/docs/bun-version
+2026-10-22T21:20:28.016508822Z bun install v1.4.3 (c6da4a4d3)
+2026-10-22T21:20:28.020865066Z 
+2026-10-22T21:20:28.020873379Z Checked 211 installs across 317 packages (no changes) [4.00ms]
+2026-10-22T21:20:28.058993878Z ==> Running build command 'bun install && bun run build'...
+2026-10-22T21:20:28.082036973Z bun install v1.4.3 (c6da4a4d3)
+2026-10-22T21:20:28.085975883Z 
+2026-10-22T21:20:28.08598245Z Checked 211 installs across 317 packages (no changes) [4.00ms]
+2026-10-22T21:20:28.108010221Z $ vite build
+2026-10-22T21:20:28.235432283Z vite v8.3.4 building client environment for production...
+2026-10-22T21:20:28.246103723Z transforming...
+2026-10-22T21:20:28.411501469Z ✓ 1683 modules transformed.
+2026-10-22T21:20:28.440954262Z [lightningcss minify] Unknown at rule: @theme
+2026-10-22T21:20:28.440966001Z 1  |  @layer theme, base, components, utilities;
+2026-10-22T21:20:28.440967509Z 2  |  @layer theme {
+2026-10-22T21:20:28.440968864Z 3  |    @theme default {
+2026-10-22T21:20:28.440969731Z    |          ^
+2026-10-22T21:20:28.44097056Z 4  |      --font-sans:
+2026-10-22T21:20:28.440971809Z 5  |        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+2026-10-22T21:20:28.441224896Z [lightningcss minify] Unknown at rule: @theme
+2026-10-22T21:20:28.441234684Z 522 |  
+2026-10-22T21:20:28.441236257Z 523 |    /* Deprecated */
+2026-10-22T21:20:28.441237624Z 524 |    @theme default inline reference {
+2026-10-22T21:20:28.441239017Z     |          ^
+2026-10-22T21:20:28.44124068Z 525 |      --blur: 8px;
+2026-10-22T21:20:28.441242292Z 526 |      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+2026-10-22T21:20:28.441503154Z [lightningcss minify] Unknown at rule: @tailwind
+2026-10-22T21:20:28.44150826Z 946 |  
+2026-10-22T21:20:28.44150953Z 947 |  @layer utilities {
+2026-10-22T21:20:28.441518632Z 948 |    @tailwind utilities;
+2026-10-22T21:20:28.441520077Z     |             ^
+2026-10-22T21:20:28.44152094Z 949 |  }
+2026-10-22T21:20:28.44152176Z 950 |  
+2026-10-22T21:20:28.444073924Z rendering chunks...
+2026-10-22T21:20:28.492887089Z computing gzip size...
+2026-10-22T21:20:28.497498858Z dist/index.html                                 1.64 kB │ gzip:   0.73 kB
+2026-10-22T21:20:28.497511156Z dist/assets/work-defensa-BPxYi-N1.jpg         100.73 kB
+2026-10-22T21:20:28.497512223Z dist/assets/work-pickup-proceso-BJFFe5sy.jpg  127.22 kB
+2026-10-22T21:20:28.497513141Z dist/assets/work-pintura-DBsCN7hz.jpg         160.72 kB
+2026-10-22T21:20:28.497514197Z dist/assets/work-taller-DBfN12Zz.jpg          170.36 kB
+2026-10-22T21:20:28.497514985Z dist/assets/work-pulido-CZNlIDX7.jpg          179.48 kB
+2026-10-22T21:20:28.497515907Z dist/assets/work-honda-B54PKQCj.jpg           192.81 kB
+2026-10-22T21:20:28.497516823Z dist/assets/work-fachada-Dta5XaGJ.jpg         223.01 kB
+2026-10-22T21:20:28.497517715Z dist/assets/work-gmc-CuW_3rdl.jpg             247.26 kB
+2026-10-22T21:20:28.497518488Z dist/assets/work-equipo-Dd1ixMqP.webp         295.77 kB
+2026-10-22T21:20:28.497519281Z dist/assets/wallpaper-titanium-BcUXAUbJ.jpg   659.46 kB
+2026-10-22T21:20:28.497520076Z dist/assets/index-BAYhQDuQ.css                 21.91 kB │ gzip:   6.06 kB
+2026-10-22T21:20:28.497520899Z dist/assets/index-AnXVZV4m.js                 351.42 kB │ gzip: 104.83 kB
+2026-10-22T21:20:28.497521625Z 
+2026-10-22T21:20:28.497821677Z ✓ built in 261ms
+2026-10-22T21:20:29.845300395Z ==> Uploading build...
+2026-10-22T21:20:30.023239892Z ==> Your site is live 🎉
